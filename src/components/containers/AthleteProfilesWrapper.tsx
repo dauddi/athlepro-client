@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useAthleteProfilesAPI from "../../lib/hooks/useAthleteProfilesAPI";
 import { AthleteProfilesRouteHeader, AthleteProfilesTable } from "../ui";
+import Loader from "../ui/Loader";
 
 const AthleteProfilesWrapper = () => {
 	const { fetchProfiles, profiles, fetchProfilesError, fetchProfilesLoading } =
@@ -29,7 +30,11 @@ const AthleteProfilesWrapper = () => {
 						<AthleteProfilesTable profiles={profiles} />
 					</div>
 				)}
-				{fetchProfilesLoading && <div>Loading...</div>}
+				{fetchProfilesLoading && (
+					<div className="my-16">
+						<Loader loaderText="Fetching profiles.." />
+					</div>
+				)}
 				{!fetchProfilesLoading && profiles.length === 0 && (
 					<div>No profiles found</div>
 				)}
