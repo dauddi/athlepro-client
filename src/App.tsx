@@ -1,10 +1,11 @@
-import React from "react";
+import AppLayout from "./components/layout/AppLayout";
+import { Outlet } from "react-router-dom";
 
 function App() {
 	return (
-		<div>
-			<h1>Athlepro App</h1>
-		</div>
+		<AppLayout>
+			<Outlet />
+		</AppLayout>
 	);
 }
 
