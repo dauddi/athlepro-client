@@ -1,11 +1,10 @@
 import axios from "axios";
+import { ATHLEPRO_API_BASE_URL } from "../../utils/constants";
 
 const AthleproAPI = axios.create({
-	baseURL: "http://localhost:8000",
+	baseURL: ATHLEPRO_API_BASE_URL,
 	headers: {
 		"Content-Type": "application/json",
-		// "Access-Control-Allow-Origin": "*",
-		// Origin: "http://localhost:3000",
 	},
 });
 

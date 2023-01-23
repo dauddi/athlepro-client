@@ -26,6 +26,13 @@ const useAthleteProfilesAPI = () => {
 	const [fetchProfilesLoading, setFetchProfilesLoading] =
 		useState<FetchProfilesStateTypes["isLoading"]>(false);
 
+	const [createProfileError, setCreateProfileError] =
+		useState<FetchProfilesStateTypes["error"]>(null);
+	const [createProfileLoading, setCreateProfileLoading] =
+		useState<FetchProfilesStateTypes["isLoading"]>(false);
+	const [createdProfile, setCreatedProfile] =
+		useState<FetchProfilesStateTypes["isLoading"]>(false);
+
 	const [createProfilesState, setCreateProfilesState] =
 		useState<CreateProfilesStateTypes>({
 			isLoading: false,
@@ -51,7 +58,7 @@ const useAthleteProfilesAPI = () => {
 	};
 
 	const createProfile = async (profile: AthleteProfileType) => {
-		setCreateProfilesState({ ...createProfilesState, isLoading: true });
+		setCreateProfileLoading(true);
 
 		try {
 			const response = await AthleproAPIPOSTRequest(
@@ -62,11 +69,11 @@ const useAthleteProfilesAPI = () => {
 				throw new Error("Something went wrong. Unable to create profile.");
 			}
 			const data = await response.data;
-			setCreateProfilesState({ ...createProfilesState, data });
+			setCreatedProfile(data);
 		} catch (error) {
-			setCreateProfilesState({ ...createProfilesState, error });
+			setCreateProfileError(error);
 		} finally {
-			setCreateProfilesState({ ...createProfilesState, isLoading: false });
+			setCreateProfileLoading(false);
 		}
 	};
 
@@ -77,6 +84,9 @@ const useAthleteProfilesAPI = () => {
 		profiles,
 		fetchProfilesError,
 		fetchProfilesLoading,
+		createProfileError,
+		createProfileLoading,
+		createdProfile,
 	};
 };
 

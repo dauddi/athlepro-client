@@ -10,9 +10,9 @@ interface AthleteProfileType {
 		zipCode: string;
 		country: string;
 	};
-	sports: string[];
+	sports: string;
 	team: string;
-	descriptrion: string;
+	description: string;
 }
 
 export type { AthleteProfileType };
